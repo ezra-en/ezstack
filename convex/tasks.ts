@@ -5,7 +5,7 @@ import { NoOp } from "convex-helpers/server/customFunctions";
 import z from "zod/v3";
 
 const taskSchema = z.object({
-  id: zid("tasks"),
+  _id: zid("tasks"),
   isCompleted: z.boolean(),
 });
 
@@ -22,13 +22,13 @@ const zMutation = zCustomMutation(mutation, NoOp);
 export const toggleTask = zMutation({
   args: taskSchema,
   handler: async (ctx, args) => {
-    const { id, isCompleted } = args;
+    const { _id, isCompleted } = args;
     await ctx.db 
-      .patch(id, {
+      .patch(_id, {
         isCompleted,
       });
-    console.log(await ctx.db.get(id));
-    return await ctx.db.get(id);
+    console.log(await ctx.db.get(_id));
+    return await ctx.db.get(_id);
   },
   returns: taskSchema
 });

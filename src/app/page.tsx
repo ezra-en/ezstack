@@ -19,7 +19,7 @@ export default function Home() {
           <Checkbox
             id={`checkbox-${_id}`}
             checked={isCompleted}
-            onCheckedChange={async (checked) => await toggleTask({ id: _id, isCompleted: checked === true })}
+            onCheckedChange={async (checked) => await toggleTask({ _id, isCompleted: checked === true })}
           />
           <label
             htmlFor={`checkbox-${_id}`}
