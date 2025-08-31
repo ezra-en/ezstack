@@ -1,24 +1,34 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { zCustomMutation, zCustomQuery, zid } from "convex-helpers/server/zod";
+import { NoOp } from "convex-helpers/server/customFunctions";
+import z from "zod/v3";
 
-export const getAllTasks = query({
+const taskSchema = z.object({
+  id: zid("tasks"),
+  isCompleted: z.boolean(),
+});
+
+const zQuery = zCustomQuery(query, NoOp);
+
+export const getAllTasks = zQuery({
   args: {},
   handler: async (ctx) => {
     return await ctx.db.query("tasks").collect();
   },
 });
 
-export const toggleTask = mutation({
-  args: {
-    id: v.id("tasks"),
-    isCompleted: v.boolean(),
-  },
+const zMutation = zCustomMutation(mutation, NoOp);
+export const toggleTask = zMutation({
+  args: taskSchema,
   handler: async (ctx, args) => {
     const { id, isCompleted } = args;
-    await ctx.db
+    await ctx.db 
       .patch(id, {
         isCompleted,
       });
     console.log(await ctx.db.get(id));
+    return await ctx.db.get(id);
   },
+  returns: taskSchema
 });
