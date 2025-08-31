@@ -1,9 +1,4 @@
-import {
-  zid,
-  zodOutputToConvex,
-  zodToConvex,
-  zodToConvexFields,
-} from "convex-helpers/server/zod";
+import { zid, zodToConvex } from "convex-helpers/server/zod";
 import { defineSchema, defineTable } from "convex/server";
 import { z } from "zod/v3";
 
