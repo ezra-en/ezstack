@@ -82,7 +82,7 @@ src/
 │   ├── page.tsx           # Example app with auth and basic CRUD
 │   ├── layout.tsx         # Root layout with providers
 │   └── api/auth/          # Better Auth API routes
-├── components/ui/         # shadcn/ui components + KiboUI registry demo
+├── components/ui/         # shadcn/ui components
 └── lib/                   # Utility functions and configurations
 
 convex/
