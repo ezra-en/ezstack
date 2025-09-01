@@ -7,6 +7,7 @@ import { type GenericCtx } from "../../convex/_generated/server";
 
 const siteUrl = requireEnv("SITE_URL");
 
+
 export const createAuth = (ctx: GenericCtx) =>
   // Configure your Better Auth instance here
   betterAuth({
@@ -23,4 +24,5 @@ export const createAuth = (ctx: GenericCtx) =>
       // The Convex plugin is required
       convex(),
     ],
+    trustedOrigins: [] // Set the SITE_URL in the Convex Dashboard > Settings > Environment Variables > SITE_URL
   });
