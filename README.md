@@ -35,8 +35,8 @@ A full-stack application template optimized for **developer experience**. Every 
 1. **Clone or use this template**:
    ```bash
    # Clone the repository
-   git clone <your-repo-url>
-   cd ezstack
+   npx degit https://github.com/ezra-en/ezstack my-app
+   cd my-app
    
    # Or use as GitHub template
    # Click "Use this template" on GitHub
