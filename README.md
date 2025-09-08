@@ -51,7 +51,11 @@ A full-stack application template optimized for **developer experience**. Every 
    ```bash
    bun x convex dev
    ```
-   This will create a new Convex project and provide you with environment variables.
+   This will create a new Convex project. While your instance is still running, set your instance environment variables:
+
+   ```bash
+   bun x convex env set SITE_URL your-public-nextjs-url
+   ```
 
 4. **Start the development server**:
    ```bash
@@ -68,6 +72,7 @@ After running `convex dev`, add the provided environment variables to your `.env
 # Convex
 CONVEX_DEPLOYMENT=your-deployment-url
 NEXT_PUBLIC_CONVEX_URL=your-public-convex-url
+NEXT_PUBLIC_CONVEX_SITE_URL=your-public-nextjs-url
 
 # Better Auth (generate a random secret)
 BETTER_AUTH_SECRET=your-secret-key
