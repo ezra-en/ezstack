@@ -7,7 +7,11 @@ const nextConfig: NextConfig = {
       // This leaves your Next.js /api/auth and /api/convex routes intact
       {
         source: "/api/:version(\\d+\\.\\d+\\.\\d+)/:path*",
-        destination: "http://localhost:3210/api/:version/:path*",
+        destination: `http://${process.env.BASE_CONVEX_URL}/api/:version/:path*`,
+      },
+      {
+        source: "/convex-http/:path*",
+        destination: `http://${process.env.BASE_CONVEX_SITE_URL}/:path*`,
       },
     ];
   },
