@@ -1,40 +1,112 @@
-# Welcome to your Convex + Next.js app
 
-This is a [Convex](https://convex.dev/) project created with [`npm create convex`](https://www.npmjs.com/package/create-convex).
+# ezstack
 
-After the initial setup (<2 minutes) you'll have a working full-stack app using:
+A streamlined full-stack template built for rapid development with Next.js and Convex. This version is focused on simplicity, real-time data, and fast momentum—ideal for quickly building modern web apps without worrying about schemas upfront.
 
-- Convex as your backend (database, server logic)
-- [React](https://react.dev/) as your frontend (web page interactivity)
-- [Next.js](https://nextjs.org/) for optimized web hosting and page routing
-- [Tailwind](https://tailwindcss.com/) for building great looking accessible UI
 
-## Get started
+## 🚀 Tech Stack
 
-If you just cloned this codebase and didn't use `npm create convex`, run:
+- **Next.js 15** – App Router for effortless routing and SSR/SSG
+- **Convex** – Real-time backend, type-safe functions, and live data
+- **Tailwind CSS v4** – Utility-first styling
+- **shadcn/ui** – Accessible, beautiful React components
+
+## 🧩 MCP Servers & Convex Instructions
+
+This template includes:
+
+- **Convex instructions**: See `.github/instructions/convex.instructions.md` for workspace-specific guidelines on writing Convex functions, schemas, and best practices. These instructions help you stay consistent and leverage Convex to its fullest.
+- **MCP server integration**: The `.vscode/mcp.json` file enables Model Context Protocol (MCP) features for advanced code intelligence and automation in VS Code. This project includes:
+
+  - **convex-mcp**: For access to your Convex deployment.
+  - **context7**: For deep documentation and code search. Requires a Context7 API key, add your key to `.vscode/mcp.json` (don't check it into Git though)
+  - **ast-grep**: For advanced AST-based code search and refactoring. Install the [Prerequisites](https://github.com/ast-grep/ast-grep-mcp#prerequisites) before use.
+
+## 🛠️ Quick Start
+
+
+
+### Prerequisites
+
+- [mise](https://mise.jdx.dev/getting-started.html) (recommended) for easy management of Node.js, pnpm, and other tool versions
+- [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/) installed
+- [Convex CLI](https://docs.convex.dev/quickstart) installed
+
+### Setup
+
+1. **Clone or use this template**:
+	```bash
+	npx degit github:ezra-en/ezstack my-app
+	cd my-app
+	```
+	Or click "Use this template" on GitHub.
+
+2. **Install dependencies**:
+	```bash
+	pnpm install
+	```
+
+3. **Initialize Convex backend** (if not already done):
+	```bash
+	pnpm convex dev
+	```
+	Follow the CLI instructions to set up your Convex project and environment variables.
+
+4. **Add environment variables** to `.env.local` (after Convex setup):
+	```
+	CONVEX_DEPLOYMENT=your-deployment-url
+	NEXT_PUBLIC_CONVEX_URL=your-public-convex-url
+	```
+
+5. **Start the development server**:
+	```bash
+	pnpm dev
+	```
+
+6. **Open your browser** to [http://localhost:3000](http://localhost:3000)
+
+## 📁 Project Structure
 
 ```
-npm install
-npm run dev
+app/
+	globals.css
+	layout.tsx
+	page.tsx
+	api/auth/[...all]/route.ts
+	login/page.tsx
+	server/inner.tsx
+	server/page.tsx
+components/
+	ConvexClientProvider.tsx
+convex/
+	auth.config.ts
+	auth.ts
+	convex.config.ts
+	http.ts
+	myFunctions.ts
+	schema.ts
+	_generated/
+lib/
+	auth-client.ts
+	auth.ts
+	utils.ts
+public/
+	convex.svg
 ```
 
-If you're reading this README on GitHub and want to use this template, run:
+## 🔧 Scripts
 
-```
-npm create convex@latest -- -t nextjs
-```
+- `pnpm dev` – Start development server
+- `pnpm build` – Build for production
+- `pnpm start` – Start production server
 
-## Learn more
+## 📚 Learn More
 
-To learn more about developing your project with Convex, check out:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Convex Documentation](https://docs.convex.dev)
+- [shadcn/ui Documentation](https://ui.shadcn.com)
+- [Tailwind CSS](https://tailwindcss.com/docs)
 
-- The [Tour of Convex](https://docs.convex.dev/get-started) for a thorough introduction to Convex principles.
-- The rest of [Convex docs](https://docs.convex.dev/) to learn about all Convex features.
-- [Stack](https://stack.convex.dev/) for in-depth articles on advanced topics.
+---
 
-## Join the community
-
-Join thousands of developers building full-stack apps with Convex:
-
-- Join the [Convex Discord community](https://convex.dev/community) to get help in real-time.
-- Follow [Convex on GitHub](https://github.com/get-convex/), star and contribute to the open-source implementation of Convex.
+**Built by [Ezra](https://github.com/ezra-en)** • A template for developers who value their time
