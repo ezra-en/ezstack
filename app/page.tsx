@@ -77,6 +77,13 @@ function Content() {
         </Link>{" "}
         for an example of loading data in a server component
       </p>
+      <p>
+        See the{" "}
+        <Link href="/login" className="underline hover:no-underline">
+          /login route
+        </Link>{" "}
+        for an example of handling authentication with Better Auth
+      </p>
       <div className="flex flex-col">
         <p className="text-lg font-bold">Useful resources:</p>
         <div className="flex gap-2">

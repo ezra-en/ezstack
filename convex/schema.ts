@@ -9,4 +9,7 @@ export default defineSchema({
   numbers: defineTable({
     value: v.number(),
   }),
+  users: defineTable({
+    // Fields are optional
+  }),
 });
