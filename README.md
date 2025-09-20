@@ -1,11 +1,14 @@
 
+
 # ezstack
+
 
 A streamlined full-stack template built for rapid development with Next.js and Convex. This version is focused on simplicity, real-time data, and fast momentum—ideal for quickly building modern web apps without worrying about schemas upfront.
 
 
 ## 🚀 Tech Stack
 
+- **Bun** – Fastest JS/TS runtime, package manager, and bundler. Handles all installs, scripts, and builds.
 - **Next.js 15** – App Router for effortless routing and SSR/SSG
 - **Convex** – Real-time backend, type-safe functions, and live data
 - **Tailwind CSS v4** – Utility-first styling
@@ -28,8 +31,11 @@ This template includes:
 
 ### Prerequisites
 
-- [mise](https://mise.jdx.dev/getting-started.html) (recommended) for easy management of Node.js, pnpm, and other tool versions
-- [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/) installed
+- [Bun](https://bun.sh/docs/install) (required) – One command to install on any OS:
+	```bash
+	curl -fsSL https://bun.sh/install | bash
+	```
+- [mise](https://mise.jdx.dev/getting-started.html) (optional) for managing multiple tool versions
 - [Convex CLI](https://docs.convex.dev/quickstart) installed
 
 ### Setup
@@ -43,27 +49,28 @@ This template includes:
 
 2. **Install dependencies**:
 	```bash
-	pnpm install
+	bun i
 	```
 
 3. **Initialize Convex backend** (if not already done):
 	```bash
-	pnpm convex dev
+	bunx convex dev --once
 	```
 	Follow the CLI instructions to set up your Convex project and environment variables.
 
-4. **Add environment variables** to `.env.local` (after Convex setup):
+4. **Add environment variables** to `.env.local` from `.env.example` (after Convex setup):
 	```
-	CONVEX_DEPLOYMENT=your-deployment-url
-	NEXT_PUBLIC_CONVEX_URL=your-public-convex-url
+	NEXT_PUBLIC_CONVEX_SITE_URL=http://127.0.0.1:3211
+		# Deployment URL for Next.js (this should be your actual deployment URL, tailscale, or localhost for local dev)
+		NEXT_PUBLIC_DEPLOYMENT_URL=http://localhost:3000
 	```
 
 5. **Start the development server**:
 	```bash
-	pnpm dev
+	bun dev
 	```
 
-6. **Open your browser** to [http://localhost:3000](http://localhost:3000)
+6. **Open your browser** to [http://localhost:3000](http://localhost:3000) (or wherever you set your `NEXT_PUBLIC_DEPLOYMENT_URL`)
 
 ## 📁 Project Structure
 
@@ -96,9 +103,9 @@ public/
 
 ## 🔧 Scripts
 
-- `pnpm dev` – Start development server
-- `pnpm build` – Build for production
-- `pnpm start` – Start production server
+- `bun dev` – Start development servers (Next.js + Convex)
+- `bun build` – Build for production
+- `bun start` – Start production server
 
 ## 📚 Learn More
 
@@ -109,4 +116,4 @@ public/
 
 ---
 
-**Built by [Ezra](https://github.com/ezra-en)** • A template for developers who value their time
+**Built by [ezra-en](https://github.com/ezra-en)** • A template for developers who value their time
