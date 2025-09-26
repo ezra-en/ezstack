@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/convex-http/:path*",
-        destination: `https://${process.env.CONVEX_SITE_URL}/:path*`,
+        destination: `https://${process.env.NEXT_PUBLIC_CONVEX_SITE_URL}/:path*`,
       },
     ];
   },
