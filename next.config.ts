@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  allowedDevOrigins: [process.env.NEXT_PUBLIC_CONVEX_URL!],
+  allowedDevOrigins: [process.env.SITE_URL!, 'http://localhost:3000'],
 };
 
 export default nextConfig;
