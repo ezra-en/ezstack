@@ -9,8 +9,8 @@
  */
 
 import type * as auth from "../auth.js";
+import type * as chat from "../chat.js";
 import type * as http from "../http.js";
-import type * as tasks from "../tasks.js";
 import type * as users from "../users.js";
 
 import type {
@@ -29,8 +29,8 @@ import type {
  */
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
+  chat: typeof chat;
   http: typeof http;
-  tasks: typeof tasks;
   users: typeof users;
 }>;
 declare const fullApiWithMounts: typeof fullApi;
