@@ -93,7 +93,14 @@ export default function RootLayout({
                   {/* Navigation menu */}
                   <NavigationMenu className="max-md:hidden">
                     <NavigationMenuList className="gap-2">
-                      {/* Navigation links go here */}
+                      <Authenticated>
+                        <a
+                          href="/admin"
+                          className="text-sm text-muted-foreground hover:text-foreground px-2 py-1"
+                        >
+                          Admin
+                        </a>
+                      </Authenticated>
                     </NavigationMenuList>
                   </NavigationMenu>
                 </div>
@@ -102,15 +109,15 @@ export default function RootLayout({
               <div className="flex items-center gap-2">
                 <Unauthenticated>
                   <Button asChild size="sm" className="text-sm">
-                    <a href="#">Sign In</a>
+                    <a href="/sign-in">Sign In</a>
                   </Button>
                 </Unauthenticated>
                 <Authenticated>
                   <AvatarMenu />
                 </Authenticated>
                 <AuthLoading>
-                  <Button asChild size="sm" className="text-sm">
-                    <a href="#">Sign In</a>
+                  <Button size="sm" className="text-sm" disabled>
+                    Loading...
                   </Button>
                 </AuthLoading>
               </div>

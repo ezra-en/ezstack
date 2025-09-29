@@ -15,6 +15,7 @@ import type * as betterAuth_adapter from "../betterAuth/adapter.js";
 import type * as betterAuth_auth from "../betterAuth/auth.js";
 import type * as chat from "../chat.js";
 import type * as http from "../http.js";
+import type * as permissions from "../permissions.js";
 import type * as users from "../users.js";
 
 import type {
@@ -39,6 +40,7 @@ declare const fullApi: ApiFromModules<{
   "betterAuth/auth": typeof betterAuth_auth;
   chat: typeof chat;
   http: typeof http;
+  permissions: typeof permissions;
   users: typeof users;
 }>;
 declare const fullApiWithMounts: typeof fullApi;
@@ -62,11 +64,15 @@ export declare const components: {
           input:
             | {
                 data: {
+                  banExpires?: null | number;
+                  banReason?: null | string;
+                  banned?: null | boolean;
                   createdAt: number;
                   email: string;
                   emailVerified: boolean;
                   image?: null | string;
                   name: string;
+                  role?: null | string;
                   updatedAt: number;
                   userId?: null | string;
                 };
@@ -76,6 +82,7 @@ export declare const components: {
                 data: {
                   createdAt: number;
                   expiresAt: number;
+                  impersonatedBy?: null | string;
                   ipAddress?: null | string;
                   token: string;
                   updatedAt: number;
@@ -141,6 +148,10 @@ export declare const components: {
                     | "createdAt"
                     | "updatedAt"
                     | "userId"
+                    | "role"
+                    | "banned"
+                    | "banReason"
+                    | "banExpires"
                     | "id";
                   operator?:
                     | "lt"
@@ -174,6 +185,7 @@ export declare const components: {
                     | "ipAddress"
                     | "userAgent"
                     | "userId"
+                    | "impersonatedBy"
                     | "id";
                   operator?:
                     | "lt"
@@ -318,6 +330,10 @@ export declare const components: {
                     | "createdAt"
                     | "updatedAt"
                     | "userId"
+                    | "role"
+                    | "banned"
+                    | "banReason"
+                    | "banExpires"
                     | "id";
                   operator?:
                     | "lt"
@@ -351,6 +367,7 @@ export declare const components: {
                     | "ipAddress"
                     | "userAgent"
                     | "userId"
+                    | "impersonatedBy"
                     | "id";
                   operator?:
                     | "lt"
@@ -550,11 +567,15 @@ export declare const components: {
             | {
                 model: "user";
                 update: {
+                  banExpires?: null | number;
+                  banReason?: null | string;
+                  banned?: null | boolean;
                   createdAt?: number;
                   email?: string;
                   emailVerified?: boolean;
                   image?: null | string;
                   name?: string;
+                  role?: null | string;
                   updatedAt?: number;
                   userId?: null | string;
                 };
@@ -568,6 +589,10 @@ export declare const components: {
                     | "createdAt"
                     | "updatedAt"
                     | "userId"
+                    | "role"
+                    | "banned"
+                    | "banReason"
+                    | "banExpires"
                     | "id";
                   operator?:
                     | "lt"
@@ -594,6 +619,7 @@ export declare const components: {
                 update: {
                   createdAt?: number;
                   expiresAt?: number;
+                  impersonatedBy?: null | string;
                   ipAddress?: null | string;
                   token?: string;
                   updatedAt?: number;
@@ -610,6 +636,7 @@ export declare const components: {
                     | "ipAddress"
                     | "userAgent"
                     | "userId"
+                    | "impersonatedBy"
                     | "id";
                   operator?:
                     | "lt"
@@ -771,11 +798,15 @@ export declare const components: {
             | {
                 model: "user";
                 update: {
+                  banExpires?: null | number;
+                  banReason?: null | string;
+                  banned?: null | boolean;
                   createdAt?: number;
                   email?: string;
                   emailVerified?: boolean;
                   image?: null | string;
                   name?: string;
+                  role?: null | string;
                   updatedAt?: number;
                   userId?: null | string;
                 };
@@ -789,6 +820,10 @@ export declare const components: {
                     | "createdAt"
                     | "updatedAt"
                     | "userId"
+                    | "role"
+                    | "banned"
+                    | "banReason"
+                    | "banExpires"
                     | "id";
                   operator?:
                     | "lt"
@@ -815,6 +850,7 @@ export declare const components: {
                 update: {
                   createdAt?: number;
                   expiresAt?: number;
+                  impersonatedBy?: null | string;
                   ipAddress?: null | string;
                   token?: string;
                   updatedAt?: number;
@@ -831,6 +867,7 @@ export declare const components: {
                     | "ipAddress"
                     | "userAgent"
                     | "userId"
+                    | "impersonatedBy"
                     | "id";
                   operator?:
                     | "lt"

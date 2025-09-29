@@ -5,6 +5,8 @@ import { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 import { betterAuth } from "better-auth";
 import authSchema from "./betterAuth/schema";
+import { admin, multiSession } from "better-auth/plugins";
+import { ac, admin as adminRole, myCustomRole, user } from "./permissions";
 
 const siteUrl = process.env.SITE_URL!;
 
@@ -39,6 +41,17 @@ export const createAuth = (
     plugins: [
       // The Convex plugin is required for Convex compatibility
       convex(),
+      admin({
+        ac,
+        roles: {
+          admin: adminRole,
+          user,
+          myCustomRole,
+        },
+        defaultRole: "user",
+        adminRoles: ["admin"], // Only users with "admin" role are considered admins
+      }),
+      multiSession(),
     ],
   });
 };
