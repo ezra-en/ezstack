@@ -7,7 +7,6 @@ export const sendMessage = mutation({
     body: v.string(),
   },
   handler: async (ctx, args) => {
-    console.log("This TypeScript function is running on the server.");
     await ctx.db.insert("messages", {
       user: args.user,
       body: args.body,

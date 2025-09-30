@@ -5,7 +5,7 @@ import { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 import { betterAuth } from "better-auth";
 import authSchema from "./betterAuth/schema";
-import { admin, multiSession } from "better-auth/plugins";
+import { admin, multiSession, organization } from "better-auth/plugins";
 import { ac, admin as adminRole, myCustomRole, user } from "./permissions";
 
 const siteUrl = process.env.SITE_URL!;
@@ -52,6 +52,7 @@ export const createAuth = (
         adminRoles: ["admin"], // Only users with "admin" role are considered admins
       }),
       multiSession(),
+      organization()
     ],
   });
 };
