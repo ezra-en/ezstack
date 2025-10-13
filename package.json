@@ -20,7 +20,7 @@
     "convex-helpers": "^0.1.104",
     "hono": "^4.9.6",
     "lucide-react": "^0.544.0",
-    "next": "15.2.3",
+    "next": "15.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.3.1"
