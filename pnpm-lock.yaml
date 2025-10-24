@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@convex-dev/better-auth':
         specifier: ^0.7.18
-        version: 0.7.18(better-auth@1.3.8(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(convex@1.27.0(react@19.1.1))(hono@4.9.6)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
+        version: 0.7.18(better-auth@1.3.8(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(convex@1.27.0(react@19.1.1))(hono@4.10.3)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
       better-auth:
         specifier: 1.3.8
         version: 1.3.8(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -25,10 +25,10 @@ importers:
         version: 1.27.0(react@19.1.1)
       convex-helpers:
         specifier: ^0.1.104
-        version: 0.1.104(convex@1.27.0(react@19.1.1))(hono@4.9.6)(react@19.1.1)(typescript@5.9.2)(zod@3.25.76)
+        version: 0.1.104(convex@1.27.0(react@19.1.1))(hono@4.10.3)(react@19.1.1)(typescript@5.9.2)(zod@3.25.76)
       hono:
-        specifier: ^4.9.6
-        version: 4.9.6
+        specifier: ^4.10.3
+        version: 4.10.3
       lucide-react:
         specifier: ^0.544.0
         version: 0.544.0(react@19.1.1)
@@ -1419,8 +1419,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  hono@4.9.6:
-    resolution: {integrity: sha512-doVjXhSFvYZ7y0dNokjwwSahcrAfdz+/BCLvAMa/vHLzjj8+CFyV5xteThGUsKdkaasgN+gF2mUxao+SGLpUeA==}
+  hono@4.10.3:
+    resolution: {integrity: sha512-2LOYWUbnhdxdL8MNbNg9XZig6k+cZXm5IjHn2Aviv7honhBMOHb+jxrKIeJRZJRmn+htUCKhaicxwXuUDlchRA==}
     engines: {node: '>=16.9.0'}
 
   hosted-git-info@2.8.9:
@@ -2297,12 +2297,12 @@ snapshots:
 
   '@better-fetch/fetch@1.1.18': {}
 
-  '@convex-dev/better-auth@0.7.18(better-auth@1.3.8(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(convex@1.27.0(react@19.1.1))(hono@4.9.6)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)':
+  '@convex-dev/better-auth@0.7.18(better-auth@1.3.8(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(convex@1.27.0(react@19.1.1))(hono@4.10.3)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)':
     dependencies:
       better-auth: 1.3.8(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       common-tags: 1.8.2
       convex: 1.27.0(react@19.1.1)
-      convex-helpers: 0.1.104(convex@1.27.0(react@19.1.1))(hono@4.9.6)(react@19.1.1)(typescript@5.9.2)(zod@3.25.76)
+      convex-helpers: 0.1.104(convex@1.27.0(react@19.1.1))(hono@4.10.3)(react@19.1.1)(typescript@5.9.2)(zod@3.25.76)
       is-network-error: 1.1.0
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
@@ -3142,11 +3142,11 @@ snapshots:
 
   concat-map@0.0.1: {}
 
-  convex-helpers@0.1.104(convex@1.27.0(react@19.1.1))(hono@4.9.6)(react@19.1.1)(typescript@5.9.2)(zod@3.25.76):
+  convex-helpers@0.1.104(convex@1.27.0(react@19.1.1))(hono@4.10.3)(react@19.1.1)(typescript@5.9.2)(zod@3.25.76):
     dependencies:
       convex: 1.27.0(react@19.1.1)
     optionalDependencies:
-      hono: 4.9.6
+      hono: 4.10.3
       react: 19.1.1
       typescript: 5.9.2
       zod: 3.25.76
@@ -3712,7 +3712,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono@4.9.6: {}
+  hono@4.10.3: {}
 
   hosted-git-info@2.8.9: {}
 
