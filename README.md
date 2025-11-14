@@ -85,7 +85,7 @@ This template includes:
 	bun dev
 	```
 
-7. **Open your browser** to [http://localhost:3000](http://localhost:3000) for the application
+7. **Open your browser** to [http://localhost:3000](http://localhost:3000) for your application
 8. **Open your browser** to [http://localhost:6790](http://localhost:6790) for the Convex Dashboard
 
 
@@ -151,4 +151,4 @@ public/
 
 ---
 
-**Built by [Ezra](https://github.com/ezra-en)** • A template for developers who value their time.
+**Built by [EzraEn](https://github.com/ezra-en)** • A template for developers who value their time.
