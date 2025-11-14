@@ -1,5 +1,17 @@
 import type { NextConfig } from "next";
 
+// Runtime check for required environment variables
+const requiredEnvVars = [
+	"NEXT_PUBLIC_CONVEX_URL",
+	"NEXT_PUBLIC_CONVEX_SITE_URL",
+];
+const missingVars = requiredEnvVars.filter((key) => !process.env[key]);
+if (missingVars.length > 0) {
+	throw new Error(
+		`Missing required environment variables: ${missingVars.join(", ")}. Please set them in your .env.`,
+	);
+}
+
 const nextConfig: NextConfig = {
 	async rewrites() {
 		return [
