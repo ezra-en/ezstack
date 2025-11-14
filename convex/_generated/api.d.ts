@@ -1034,5 +1034,8 @@ export declare const components: {
         any
       >;
     };
+    admin: {
+      checkAdmins: FunctionReference<"query", "internal", any, any>;
+    };
   };
 };

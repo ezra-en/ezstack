@@ -1010,4 +1010,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
         Name
       >;
     };
+    admin: {
+      checkAdmins: FunctionReference<"query", "internal", any, any, Name>;
+    };
   };
