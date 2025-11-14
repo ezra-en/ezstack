@@ -8,7 +8,8 @@
     "dev:backend": "convex dev",
     "build": "next build",
     "start": "next start",
-    "lint": "biome lint"
+    "lint": "biome lint",
+    "betterAuth:generate": "cd convex/betterAuth && npx @better-auth/cli generate -y"
   },
   "dependencies": {
     "@convex-dev/better-auth": "^0.9.7",

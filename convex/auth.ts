@@ -4,17 +4,20 @@ import { components } from "./_generated/api";
 import type { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 import { betterAuth } from "better-auth";
+import authSchema from "./betterAuth/schema";
 
-if (!process.env.NEXT_PUBLIC_DEPLOYMENT_URL) {
-	throw new Error(
-		"Missing NEXT_PUBLIC_DEPLOYMENT_URL environment variable. Please set it in your Convex dashboard.",
-	);
-}
 const siteUrl = process.env.NEXT_PUBLIC_DEPLOYMENT_URL;
 
 // The component client has methods needed for integrating Convex with Better Auth,
 // as well as helper methods for general use.
-export const authComponent = createClient<DataModel>(components.betterAuth);
+export const authComponent = createClient<DataModel, typeof authSchema>(
+	components.betterAuth,
+	{
+		local: {
+			schema: authSchema,
+		},
+	},
+);
 
 export const createAuth = (
 	ctx: GenericCtx<DataModel>,
