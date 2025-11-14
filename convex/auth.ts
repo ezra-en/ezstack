@@ -5,6 +5,7 @@ import type { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 import { betterAuth } from "better-auth";
 import authSchema from "./betterAuth/schema";
+import { admin } from "better-auth/plugins";
 
 const siteUrl = process.env.NEXT_PUBLIC_DEPLOYMENT_URL;
 
@@ -39,6 +40,7 @@ export const createAuth = (
 		plugins: [
 			// The Convex plugin is required for Convex compatibility
 			convex(),
+			admin()
 		],
 	});
 };
