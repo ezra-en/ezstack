@@ -13,6 +13,7 @@ if (missingVars.length > 0) {
 }
 
 const nextConfig: NextConfig = {
+	output: 'standalone',
 	async rewrites() {
 		return [
 			// Only rewrites Convex version-specific API routes (like /api/1.26.2/sync)
