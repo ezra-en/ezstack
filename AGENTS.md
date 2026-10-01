@@ -57,5 +57,5 @@ Run `bunx convex dev` once to generate it.
 
 ## Reference
 
-- `PLANS/ezstack-modernization.md` — the working modernization plan.
 - `README.md` — setup, environment, and deployment.
+- `docs/deployment/` — Cloudflare and Coolify runbooks.
