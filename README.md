@@ -130,22 +130,23 @@ client-owned domains or a migration window.
 
 ## Deployment
 
-Two supported paths. The repo links no deployment; configure per project.
+Two supported paths, documented in [docs/deployment](./docs/deployment/README.md):
 
-1. **Cloudflare Workers + Convex** — add `@cloudflare/vite-plugin` and
-   `@vinext/cloudflare`, define bindings in `wrangler.jsonc`, and deploy with
-   `npx @vinext/cloudflare deploy`. Convex runs managed (Convex Cloud) or
-   self-hosted (set `CONVEX_CLOUD_ORIGIN` / `CONVEX_SITE_ORIGIN`). Watch
-   free-tier limits.
-2. **Full Coolify** — frontend container plus a self-hosted Convex service.
-   Give the Convex backend dedicated headroom (≈2× the frontend's resources)
-   and a `docker-compose.yml`; grant agents access via the Coolify CLI + API
-   tokens.
+1. **[Cloudflare Workers + Convex](./docs/deployment/cloudflare.md)** — add
+   `@cloudflare/vite-plugin` + `@vinext/cloudflare`, build and deploy to
+   Workers. Convex runs managed or self-hosted. Watch free-tier limits.
+2. **[Full Coolify](./docs/deployment/coolify.md)** — frontend `Dockerfile`
+   plus a self-hosted Convex compose service. Give the backend ≈2× the
+   frontend's resources; drive Coolify from the CLI + API tokens.
+
+Runtime env and functions deploy together with
+`bash scripts/deploy-convex.sh <env>`. Always deploy the frontend from the
+**same commit** as the backend.
 
 `next.config.ts` is honored by vinext for `rewrites`, `headers`, `redirects`
-and `images` — use it to keep Convex URLs behind your own domain. Note that
-WebSocket upgrades (Convex realtime sync) are not proxied by rewrites; use a
-WS-capable layer (Vite `server.proxy` in dev, a reverse proxy in production).
+and `images`. To hide Convex URLs, prefer branded origins for a self-hosted
+backend; on Convex Cloud the realtime WebSocket needs a WS-capable proxy, which
+rewrites do not provide.
 
 ## Project structure
 

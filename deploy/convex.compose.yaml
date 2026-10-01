@@ -1,0 +1,42 @@
+# Self-hosted Convex backend for production (Coolify / Docker).
+#
+#   CONVEX_CLOUD_ORIGIN=https://convex-api.example.com \
+#   CONVEX_SITE_ORIGIN=https://convex-site.example.com \
+#   docker compose -f deploy/convex.compose.yaml up -d
+#
+# Then, in the backend container, run `./generate_admin_key.sh` and put the key
+# in .env.<env> as CONVEX_SELF_HOSTED_ADMIN_KEY. See docs/deployment/coolify.md.
+services:
+  backend:
+    # Pin a specific tag/commit for production; never `latest`.
+    image: ghcr.io/get-convex/convex-backend:latest
+    restart: unless-stopped
+    stop_grace_period: 10s
+    stop_signal: SIGINT
+    expose:
+      - "3210"
+      - "3211"
+    volumes:
+      - data:/convex/data
+    environment:
+      CONVEX_CLOUD_ORIGIN: ${CONVEX_CLOUD_ORIGIN:?set CONVEX_CLOUD_ORIGIN}
+      CONVEX_SITE_ORIGIN: ${CONVEX_SITE_ORIGIN:?set CONVEX_SITE_ORIGIN}
+      DISABLE_BEACON: "true"
+      DOCUMENT_RETENTION_DELAY: "172800"
+      RUST_LOG: info
+    # Give the backend dedicated headroom — roughly 2x the frontend's
+    # allocation. Coolify honors these; plain compose may ignore them.
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 2g
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3210/version"]
+      interval: 5s
+      start_period: 30s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  data:
