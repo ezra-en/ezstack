@@ -1,0 +1,44 @@
+# Local self-hosted Convex backend + dashboard.
+#
+#   INSTANCE_SECRET=$(openssl rand -hex 32) docker compose up -d
+#   docker compose exec backend ./generate_admin_key.sh
+#
+# Then point .env.local at it (see .env.example) and run `bunx convex dev`.
+# The image tag is pinned for reproducibility; bump it deliberately.
+services:
+  backend:
+    image: ghcr.io/get-convex/convex-backend:33cef775a8a6228cbacee4a09ac2c4073d62ed13
+    stop_grace_period: 10s
+    stop_signal: SIGINT
+    ports:
+      - "${PORT:-3210}:3210"
+      - "${SITE_PROXY_PORT:-3211}:3211"
+    volumes:
+      - data:/convex/data
+    environment:
+      INSTANCE_NAME: ${INSTANCE_NAME:-ezstack-local}
+      INSTANCE_SECRET: ${INSTANCE_SECRET:-}
+      CONVEX_CLOUD_ORIGIN: ${CONVEX_CLOUD_ORIGIN:-http://127.0.0.1:${PORT:-3210}}
+      CONVEX_SITE_ORIGIN: ${CONVEX_SITE_ORIGIN:-http://127.0.0.1:${SITE_PROXY_PORT:-3211}}
+      DISABLE_BEACON: ${DISABLE_BEACON:-true}
+      DO_NOT_REQUIRE_SSL: "1"
+      RUST_LOG: ${RUST_LOG:-info}
+    healthcheck:
+      test: curl -f http://localhost:3210/version
+      interval: 5s
+      start_period: 10s
+
+  dashboard:
+    image: ghcr.io/get-convex/convex-dashboard:33cef775a8a6228cbacee4a09ac2c4073d62ed13
+    stop_grace_period: 10s
+    stop_signal: SIGINT
+    ports:
+      - "${DASHBOARD_PORT:-6791}:6791"
+    environment:
+      NEXT_PUBLIC_DEPLOYMENT_URL: ${NEXT_PUBLIC_DEPLOYMENT_URL:-http://127.0.0.1:${PORT:-3210}}
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  data:
