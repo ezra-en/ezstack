@@ -7,31 +7,13 @@ import type { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 import authConfig from "./auth.config";
 import authSchema from "./betterAuth/schema";
+import { getAllowedOrigins } from "./lib/origins";
 import {
   ac,
   admin as adminRole,
   superadmin,
   user as userRole,
 } from "./permissions";
-
-// Extra allowed browser origins beyond the site URL itself, from a
-// comma-separated CORS_ORIGINS var. Feeds both the Convex HTTP CORS config
-// (convex/http.ts) and Better Auth trustedOrigins below.
-export const getExtraOrigins = (): string[] =>
-  (process.env.CORS_ORIGINS ?? "")
-    .split(",")
-    .map((origin) => origin.trim())
-    .filter((origin) => origin.length > 0);
-
-// The deployment's own URL, localhost for dev, plus any extra origins.
-export const getAllowedOrigins = (): string[] => {
-  const origins = [
-    process.env.SITE_URL,
-    ...getExtraOrigins(),
-    "http://localhost:3000",
-  ].filter((origin): origin is string => Boolean(origin));
-  return [...new Set(origins)];
-};
 
 // The component client has methods needed for integrating Convex with Better Auth,
 // as well as helper methods for general use.

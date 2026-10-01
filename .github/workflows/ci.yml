@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - run: bun install --frozen-lockfile
+      - name: Lint
+        run: bunx biome check
+      - name: Test
+        run: bunx vitest run
+
+      - name: Typecheck
+        run: |
+          # convex/_generated is not committed. Generate it against an
+          # anonymous local backend, then set the required deployment env.
+          CONVEX_AGENT_MODE=anonymous bunx convex dev --once --typecheck disable || true
+          bunx convex env set BETTER_AUTH_SECRET "$(openssl rand -base64 32)"
+          bunx convex env set SITE_URL http://localhost:3000
+          CONVEX_AGENT_MODE=anonymous bunx convex dev --once --typecheck disable
+          bunx tsc --noEmit
