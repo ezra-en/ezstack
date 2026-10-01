@@ -41,9 +41,9 @@ bunx convex run init:bootstrapAdmin \
   '{"email":"you@example.com","password":"pick-something-strong","name":"You"}'
 ```
 
-Prefer a graphical setup? Run `bunx convex dev` without the agent-mode env var
-and choose **"Start without an account"**, or log in later with
-`bunx convex login` to link a cloud project.
+Anonymous deployments get a local **dashboard** too: while `bunx convex dev` is
+running, open it with `bunx convex dashboard` (no account required). Use
+`bunx convex login` only if you want a cloud project.
 
 ## Scripts
 
