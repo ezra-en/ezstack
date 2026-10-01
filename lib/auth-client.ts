@@ -4,9 +4,9 @@ import { createAuthClient } from "better-auth/react";
 import type { auth } from "@/convex/betterAuth/auth";
 
 export const authClient = createAuthClient({
-	plugins: [
-		convexClient(),
-		adminClient(),
-		inferAdditionalFields<typeof auth>(),
-	],
+  plugins: [
+    convexClient(),
+    adminClient(),
+    inferAdditionalFields<typeof auth>(),
+  ],
 });

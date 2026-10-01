@@ -5,21 +5,21 @@ import { ConvexClientProvider } from "./ConvexClientProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-	title: "ezstack",
-	description: "Convex + Better Auth + vinext starter",
+  title: "ezstack",
+  description: "Convex + Better Auth + vinext starter",
 };
 
 export default async function RootLayout({
-	children,
+  children,
 }: Readonly<{ children: ReactNode }>) {
-	const token = await getToken();
-	return (
-		<html lang="en">
-			<body>
-				<ConvexClientProvider initialToken={token}>
-					{children}
-				</ConvexClientProvider>
-			</body>
-		</html>
-	);
+  const token = await getToken();
+  return (
+    <html lang="en">
+      <body>
+        <ConvexClientProvider initialToken={token}>
+          {children}
+        </ConvexClientProvider>
+      </body>
+    </html>
+  );
 }

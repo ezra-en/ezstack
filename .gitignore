@@ -39,6 +39,9 @@ yarn-error.log*
 /convex/_generated
 /convex/betterAuth/_generated
 
+# convex local deployment state
+/.convex
+
 # vercel
 .vercel
 
