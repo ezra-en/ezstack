@@ -1,6 +1,7 @@
 # ezstack modernization plan — fresh scaffold (v3)
 
-**Status:** proposed — awaiting review
+**Status:** in progress — Phases A–C done and verified; Phase E (docs/CI) done; Phase D (deployment docs) pending.
+**Branch:** local `v2` (not yet pushed)
 **Author:** working session, 2026-09-29
 **Repo:** `~/projects/ezraen/ezstack` @ `main` (`53aa088`)
 
