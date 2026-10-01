@@ -1,55 +1,46 @@
 import { createClient, type GenericCtx } from "@convex-dev/better-auth";
 import { convex } from "@convex-dev/better-auth/plugins";
+import { admin } from "better-auth/plugins";
+import { betterAuth, type BetterAuthOptions } from "better-auth/minimal";
 import { components } from "./_generated/api";
 import type { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
-import { betterAuth } from "better-auth";
-import authSchema from "./betterAuth/schema";
-import { admin } from "better-auth/plugins";
+import authConfig from "./auth.config";
 
-const siteUrl = process.env.NEXT_PUBLIC_DEPLOYMENT_URL;
+const siteUrl = process.env.SITE_URL;
 
 // The component client has methods needed for integrating Convex with Better Auth,
 // as well as helper methods for general use.
-export const authComponent = createClient<DataModel, typeof authSchema>(
-	components.betterAuth,
-	{
-		local: {
-			schema: authSchema,
-		},
-	},
-);
+export const authComponent = createClient<DataModel>(components.betterAuth);
 
-export const createAuth = (
-	ctx: GenericCtx<DataModel>,
-	{ optionsOnly } = { optionsOnly: false },
-) => {
-	return betterAuth({
-		// disable logging when createAuth is called just to generate options.
-		// this is not required, but there's a lot of noise in logs without it.
-		logger: {
-			disabled: optionsOnly,
-		},
+// Kept separate from createAuth so the component can import the options
+// without reading environment variables (see convex/betterAuth/auth.ts).
+export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
+	return {
+		appName: "ezstack",
 		baseURL: siteUrl,
+		secret: process.env.BETTER_AUTH_SECRET,
 		database: authComponent.adapter(ctx),
-		// Configure simple, non-verified email/password to get started
 		emailAndPassword: {
 			enabled: true,
 			requireEmailVerification: false,
 		},
 		plugins: [
-			// The Convex plugin is required for Convex compatibility
-			convex(),
-			admin()
+			// The Convex plugin is required for Convex compatibility.
+			convex({ authConfig }),
+			admin(),
 		],
-	});
+	} satisfies BetterAuthOptions;
 };
 
-// Example function for getting the current user
-// Feel free to edit, omit, etc.
+export const createAuth = (ctx: GenericCtx<DataModel>) => {
+	return betterAuth(createAuthOptions(ctx));
+};
+
+// Example function for getting the current user. Feel free to edit or omit.
 export const getCurrentUser = query({
 	args: {},
 	handler: async (ctx) => {
-		return authComponent.getAuthUser(ctx);
+		return authComponent.safeGetAuthUser(ctx);
 	},
 });

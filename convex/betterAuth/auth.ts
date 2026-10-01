@@ -1,5 +1,6 @@
-import { createAuth } from '../auth'
-import { getStaticAuth } from '@convex-dev/better-auth'
+import { createAuth } from "../auth";
 
-// Export a static instance for Better Auth schema generation
-export const auth = getStaticAuth(createAuth)
+// Export a static instance for Better Auth schema generation.
+// This file should only contain the `auth` export: importing it at runtime
+// would trigger errors due to missing environment variables.
+export const auth = createAuth({} as never);
