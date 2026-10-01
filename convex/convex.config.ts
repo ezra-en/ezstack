@@ -1,12 +1,16 @@
 import { defineApp } from "convex/server";
+import { v } from "convex/values";
 import betterAuth from "./betterAuth/convex.config";
 
-const app = defineApp();
+// Declared, validated at push time, and read via `env` from _generated/server.
+const app = defineApp({
+  env: {
+    SITE_URL: v.string(),
+    BETTER_AUTH_SECRET: v.string(),
+    CORS_ORIGINS: v.optional(v.string()),
+  },
+});
 
 app.use(betterAuth);
 
 export default app;
-
-// NOTE: typed `env` declarations (SITE_URL, BETTER_AUTH_SECRET, CORS_ORIGINS, …)
-// will be added alongside the CORS/auth pass so the first push isn't blocked on
-// variables that can only be set after the deployment exists.
