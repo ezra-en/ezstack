@@ -22,14 +22,9 @@ export const bootstrapAdmin = internalMutation({
   },
   returns: v.object({ userId: v.string() }),
   handler: async (ctx, args) => {
-    const adminCount = await ctx.runQuery(
-      components.betterAuth.users.countAdmins,
-      {},
-    );
+    const adminCount = await ctx.runQuery(components.betterAuth.users.countAdmins, {});
     if (adminCount > 0) {
-      throw new Error(
-        "An admin already exists; refusing to bootstrap another.",
-      );
+      throw new Error("An admin already exists; refusing to bootstrap another.");
     }
 
     const { auth } = await authComponent.getAuth(createAuth, ctx);

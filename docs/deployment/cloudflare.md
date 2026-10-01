@@ -35,7 +35,7 @@ export default defineConfig({
   "compatibility_date": "2026-09-29",
   "compatibility_flags": ["nodejs_compat"],
   "main": "vinext/server/app-router-entry",
-  "assets": { "not_found_handling": "none" }
+  "assets": { "not_found_handling": "none" },
 }
 ```
 

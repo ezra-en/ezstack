@@ -8,24 +8,16 @@ import { query } from "./_generated/server";
 import authConfig from "./auth.config";
 import authSchema from "./betterAuth/schema";
 import { getAllowedOrigins } from "./lib/origins";
-import {
-  ac,
-  admin as adminRole,
-  superadmin,
-  user as userRole,
-} from "./permissions";
+import { ac, admin as adminRole, superadmin, user as userRole } from "./permissions";
 
 // The component client has methods needed for integrating Convex with Better Auth,
 // as well as helper methods for general use.
-export const authComponent = createClient<DataModel, typeof authSchema>(
-  components.betterAuth,
-  {
-    local: {
-      schema: authSchema,
-    },
-    verbose: false,
+export const authComponent = createClient<DataModel, typeof authSchema>(components.betterAuth, {
+  local: {
+    schema: authSchema,
   },
-);
+  verbose: false,
+});
 
 // Kept separate from createAuth so the component can import the options
 // without reading environment variables (see convex/betterAuth/auth.ts).

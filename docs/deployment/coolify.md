@@ -87,7 +87,7 @@ coolify deploy name <frontend-app>
 ## 6. Verify
 
 - `curl -i -X OPTIONS https://convex-site.example.com/api/auth/sign-in/email \
-   -H "Origin: https://app.example.com" -H "Access-Control-Request-Method: POST"`
+ -H "Origin: https://app.example.com" -H "Access-Control-Request-Method: POST"`
   returns `access-control-allow-origin: https://app.example.com`.
 - Sign-in works from the app domain; the first admin can reach the dashboard.
 - Frontend and backend were deployed from the same commit.

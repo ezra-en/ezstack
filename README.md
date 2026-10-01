@@ -6,7 +6,7 @@ running on **vinext** (the Next.js API surface reimplemented on Vite).
 - **vinext** — App Router, React Server Components, Vite HMR and build
 - **Convex** — realtime database, typed functions, file storage
 - **Better Auth** (Local Install) — email/password + admin RBAC, no defaults
-- **Tailwind CSS v4**, **Biome 2**, **TypeScript 7**, **Vitest**
+- **Tailwind CSS v4**, **oxlint + oxfmt**, **TypeScript 7**, **Vitest**
 
 ## Quick start
 
@@ -47,17 +47,17 @@ running, open it with `bunx convex dashboard` (no account required). Use
 
 ## Scripts
 
-| Script | What it does |
-| --- | --- |
-| `bun run dev` | vinext dev server (Vite) on port 3000 |
-| `bun run dev:portless` | Same, behind [portless](https://github.com/vercel/portless) for a stable local URL |
-| `bun run build` | Production build (`vite build`) |
-| `bun run start` | Serve the production build (`vinext start`) |
-| `bun run typecheck` | `tsc --noEmit` (TypeScript 7) |
-| `bun run lint` / `format` | Biome check / format |
-| `bun run test` | Vitest |
-| `bun run convex:dev` | Convex dev deployment |
-| `bun run betterAuth:generate` | Regenerate `convex/betterAuth/generatedSchema.ts` |
+| Script                        | What it does                                                                       |
+| ----------------------------- | ---------------------------------------------------------------------------------- |
+| `bun run dev`                 | vinext dev server (Vite) on port 3000                                              |
+| `bun run dev:portless`        | Same, behind [portless](https://github.com/vercel/portless) for a stable local URL |
+| `bun run build`               | Production build (`vite build`)                                                    |
+| `bun run start`               | Serve the production build (`vinext start`)                                        |
+| `bun run typecheck`           | `tsc --noEmit` (TypeScript 7)                                                      |
+| `bun run lint` / `format`     | oxlint / oxfmt                                                                     |
+| `bun run test`                | Vitest                                                                             |
+| `bun run convex:dev`          | Convex dev deployment                                                              |
+| `bun run betterAuth:generate` | Regenerate `convex/betterAuth/generatedSchema.ts`                                  |
 
 > `typecheck` and `build` need `convex/_generated`, which is **not committed**.
 > Run `bunx convex dev` once first.
@@ -73,11 +73,11 @@ Two separate places, deliberately:
 **The Convex deployment** (never in `.env.local` — see `.env.convex.example`).
 Set with `bunx convex env set` or the dashboard:
 
-| Variable | Required | Notes |
-| --- | --- | --- |
-| `SITE_URL` | yes | Better Auth `baseURL`; drives callbacks |
-| `BETTER_AUTH_SECRET` | yes | `openssl rand -base64 32` |
-| `CORS_ORIGINS` | no | Comma-separated extra browser origins |
+| Variable             | Required | Notes                                   |
+| -------------------- | -------- | --------------------------------------- |
+| `SITE_URL`           | yes      | Better Auth `baseURL`; drives callbacks |
+| `BETTER_AUTH_SECRET` | yes      | `openssl rand -base64 32`               |
+| `CORS_ORIGINS`       | no       | Comma-separated extra browser origins   |
 
 These are declared in `convex/convex.config.ts` and validated **at push time**,
 so a typo or missing value fails the deploy instead of the runtime.
@@ -124,7 +124,7 @@ client-owned domains or a migration window.
 
 - **portless** (optional) gives stable local URLs instead of ports. Install it
   (`bun add -g portless`), keep `portless.json`, and run `bun run dev:portless`.
-- **Biome** replaces ESLint/Prettier: `bun run lint` / `bun run format`.
+- **oxlint + oxfmt** replace ESLint/Prettier: `bun run lint` / `bun run format`.
 - **Vitest** for unit tests; pure helpers live outside `convex/` (e.g.
   `convex/lib/`) so they can be imported directly.
 

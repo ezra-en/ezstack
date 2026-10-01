@@ -8,8 +8,6 @@ export const countAdmins = query({
   returns: v.number(),
   handler: async (ctx) => {
     const users = await ctx.db.query("user").collect();
-    return users.filter(
-      (entry) => entry.role === "admin" || entry.role === "superadmin",
-    ).length;
+    return users.filter((entry) => entry.role === "admin" || entry.role === "superadmin").length;
   },
 });

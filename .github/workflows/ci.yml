@@ -15,7 +15,9 @@ jobs:
 
       - run: bun install --frozen-lockfile
       - name: Lint
-        run: bunx biome check
+        run: bunx oxlint
+      - name: Format check
+        run: bunx oxfmt --check
       - name: Test
         run: bunx vitest run
 

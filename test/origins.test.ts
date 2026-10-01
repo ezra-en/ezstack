@@ -10,10 +10,7 @@ afterEach(() => {
 describe("getExtraOrigins", () => {
   it("splits, trims, and drops empty entries", () => {
     process.env.CORS_ORIGINS = " https://a.example , https://b.example ,, ";
-    expect(getExtraOrigins()).toEqual([
-      "https://a.example",
-      "https://b.example",
-    ]);
+    expect(getExtraOrigins()).toEqual(["https://a.example", "https://b.example"]);
   });
 
   it("returns an empty array when unset", () => {
