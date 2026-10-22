@@ -13,7 +13,7 @@ TypeScript 7, Vitest.
 | Dev server             | `bun run dev` (Vite, port 3000)                                                                         |
 | Convex backend         | `bun run convex:dev` — or `CONVEX_AGENT_MODE=anonymous bunx convex dev` for a local, no-account backend |
 | Build / start          | `bun run build` / `bun run start`                                                                       |
-| Typecheck              | `bun run typecheck` (`tsc --noEmit`, TS 7)                                                              |
+| Typecheck              | `bun run typecheck` (`tsrs --noEmit`, TS 7.1) — `bun run typecheck:tsc` for the `tsc` fallback          |
 | Lint / format          | `bun run lint` / `bun run format` (oxlint / oxfmt)                                                      |
 | Tests                  | `bun run test` (Vitest)                                                                                 |
 | Regenerate auth schema | `bun run betterAuth:generate`                                                                           |
@@ -25,6 +25,9 @@ Run `bunx convex dev` once to generate it.
 
 - TypeScript strict. Formatting/linting is oxlint + oxfmt — do not add ESLint or
   Prettier.
+- `tsrs` is the typechecker, not a build step. Keep `typescript@7` installed for
+  editors and tools that need the compiler API; `tsrs` is standalone and does not
+  replace that package. Do not add `tsrs` to `build` scripts without testing emit.
 - Convex: use the new function syntax and always add argument/return validators.
   Keep pure helpers in `convex/lib/` (no Convex imports at module scope) so they
   stay unit-testable; tests live in `test/`.

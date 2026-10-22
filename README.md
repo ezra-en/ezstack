@@ -53,7 +53,7 @@ running, open it with `bunx convex dashboard` (no account required). Use
 | `bun run dev:portless`        | Same, behind [portless](https://github.com/vercel/portless) for a stable local URL |
 | `bun run build`               | Production build (`vite build`)                                                    |
 | `bun run start`               | Serve the production build (`vinext start`)                                        |
-| `bun run typecheck`           | `tsc --noEmit` (TypeScript 7)                                                      |
+| `bun run typecheck`           | `tsrs --noEmit` (TypeScript 7.1; `typecheck:tsc` for the `tsc` fallback)            |
 | `bun run lint` / `format`     | oxlint / oxfmt                                                                     |
 | `bun run test`                | Vitest                                                                             |
 | `bun run convex:dev`          | Convex dev deployment                                                              |
