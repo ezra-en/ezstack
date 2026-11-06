@@ -120,6 +120,33 @@ wired into the Better Auth admin plugin.
 Better Auth `trustedOrigins`, on top of `SITE_URL` and localhost. Useful for
 client-owned domains or a migration window.
 
+### Cookie prefix when apps share a domain
+
+Every Better Auth app defaults to the cookie name `better-auth.session_token`.
+If two of them live on the same registrable domain (`vault.ezraen.dev`,
+`code.ezraen.dev`, …) and either sets a domain-wide cookie, the browser holds
+**two cookies with the same name**. It sends both; Better Auth reads whichever
+comes first, which may not be yours.
+
+Symptom: sign-in returns 200 and the next request bounces to `/login`. Password
+and passkey fail identically, because neither is the problem.
+
+Give each app its own namespace:
+
+```ts
+betterAuth({
+  advanced: {
+    cookiePrefix: "vault", // -> __Secure-vault.session_token
+  },
+})
+```
+
+Debugging it: `wrangler tail` on the Worker, and log the cookie **names** (never
+values) on the route that redirects. A duplicated name in that list is the tell.
+
+Renaming the prefix logs everyone out — the old cookie is simply not looked at
+any more. Do it before an app has users, or accept the one-time sign-out.
+
 ## Dev tooling
 
 - **portless** (optional) gives stable local URLs instead of ports. Install it
