@@ -9,7 +9,7 @@
 services:
   backend:
     # Pin a specific tag/commit for production; never `latest`.
-    image: ghcr.io/get-convex/convex-backend:latest
+    image: ghcr.io/convex/convex-backend:latest
     restart: unless-stopped
     stop_grace_period: 10s
     stop_signal: SIGINT
